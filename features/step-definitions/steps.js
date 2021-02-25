@@ -5,18 +5,52 @@ const LoginPage = require('../pageobjects/login.page');
 // const SecurePage = require('../pageobjects/secure.page');
 
 
+
+const request = require('request');
+
 Given(/^I am on the login page$/, () => {
     LoginPage.open()
 });
 
+///////
+When(/^Try to do my api test$/, async () => {
+    return new Promise((resolve, reject) => {
+
+        request.post('https://thinkmobiles.com/sign-in/',
+            {
+                    'email': 'dantes.8ua8@gmail.com',
+                    'password': 'lolyP0P11',
+                    'rememberMe': false
+            },
+
+            function (error, response, _body) {
+                if (error) {
+                    console.error('request error:', error);
+                    reject(error);
+                    return;
+                }
+                resolve(response);
+                console.log(response);
+            });
+    });
+    // request.get('https://thinkmobiles.com/sign-in/', {
+    //     'auth': {
+    //       'user': 'username',
+    //       'pass': 'password',
+    //       'sendImmediately': false
+    //     }
+    //   });
+});
+//////
+
 When(/^I click on (.+)$/, (link) => {
-    const MYlink=$(`[aria-label=${link}]`)
+    const MYlink = $(`[aria-label=${link}]`)
     // const classNameAndText = $('[name="username"]')
     MYlink.click()
 });
 
 When(/^As a user, I click on (.+)$/, (link) => {
-    const MYlink=$(`=${link}`)
+    const MYlink = $(`=${link}`)
     MYlink.click()
 });
 
@@ -39,21 +73,21 @@ Then(/^I should see the new page with (.*)$/, (title) => {
 
 Then(/^I click on chekbox Stay logged in$/, () => {
 
-    const MYlink=$('.contact-us__checkbox-label')
+    const MYlink = $('.contact-us__checkbox-label')
     MYlink.click()
 });
 
 
 Then(/^Login button is disabled$/, () => {
-    const loginBUTTON=$('.sign_up-submit')
-  expect(loginBUTTON).not.toBeClickable()
+    const loginBUTTON = $('.sign_up-submit')
+    expect(loginBUTTON).not.toBeClickable()
 });
 
 
 Then(/^User see (.+) error$/, (message) => {
-const erMesage=$(`.input-error*=${message}`)
+    const erMesage = $(`.input-error*=${message}`)
     expect(erMesage)
-    // .toHaveText(message)
-    .toHaveTextContaining(message)
+        // .toHaveText(message)
+        .toHaveTextContaining(message)
 
 });
