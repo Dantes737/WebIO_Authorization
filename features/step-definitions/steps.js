@@ -1,6 +1,7 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { disable } = require('mockery');
 const fetch = require("node-fetch");
+const request = require('request');
 const LoginPage = require('../pageobjects/login.page');
 // const SecurePage = require('../pageobjects/secure.page');
 
@@ -9,25 +10,48 @@ Given(/^I am on the login page$/, () => {
     LoginPage.open()
 });
 
-///////
+
 When(/^Try to do my api test$/, async () => {
+    // request.post({
+    //     url: 'https://thinkmobiles.com/api/auth/sign-in/',
+    //     form: {
+    //         email: 'dantes.8ua8@gmail.com',
+    //         password : 'lolyP0P11',
+    //         rememberMe: false
+    //     }
+    // },
+    //     function (err, httpResponse, body) {
+    //         console.log(httpResponse);
+    //         console.log(body);
 
-    const data = {
-    email: 'dantes.8ua8@gmail.com',
-    password: 'lolyP0P11',
-    rememberMe: false
-};
+    //     })
+    //////////////################//////////////////////////////////
+    //     const email = 'dantes.8ua8@gmail.com',
+    //     password = 'lolyP0P11',
+    //     url = 'http://' + email + ':' + password + 'thinkmobiles.com/api/auth/sign-in/';
 
-fetch('https://thinkmobiles.com/api/auth/sign-in/', {
-        method: 'post',
-        body:    JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json' },
-    })
-    .then(res =>console.log(res));
+    // request({url}, function (error, response, body) {
+    //    // Do more stuff with 'body' here
+    //    console.log(response);
+    //    console.log(body);
+    // });
+    ////////////########################/////////////////
+        const data = {
+        email: 'dantes.8ua8@gmail.com',
+        password: 'lolyP0P11',
+        rememberMe: false
+    };
 
-   
+    fetch('https://thinkmobiles.com/api/auth/sign-in/', {
+            method: 'post',
+            body:    JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' },
+        })
+        .then(res =>console.log(res));
+
+
 });
-//////
+
 
 When(/^I click on (.+)$/, (link) => {
     const MYlink = $(`[aria-label=${link}]`)
