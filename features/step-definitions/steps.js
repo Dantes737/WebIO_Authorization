@@ -1,12 +1,9 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { disable } = require('mockery');
-
+const fetch = require("node-fetch");
 const LoginPage = require('../pageobjects/login.page');
 // const SecurePage = require('../pageobjects/secure.page');
 
-
-
-const request = require('request');
 
 Given(/^I am on the login page$/, () => {
     LoginPage.open()
@@ -14,32 +11,21 @@ Given(/^I am on the login page$/, () => {
 
 ///////
 When(/^Try to do my api test$/, async () => {
-    return new Promise((resolve, reject) => {
 
-        request.post('https://thinkmobiles.com/sign-in/',
-            {
-                    'email': 'dantes.8ua8@gmail.com',
-                    'password': 'lolyP0P11',
-                    'rememberMe': false
-            },
+    const data = {
+    email: 'dantes.8ua8@gmail.com',
+    password: 'lolyP0P11',
+    rememberMe: false
+};
 
-            function (error, response, _body) {
-                if (error) {
-                    console.error('request error:', error);
-                    reject(error);
-                    return;
-                }
-                resolve(response);
-                console.log(response);
-            });
-    });
-    // request.get('https://thinkmobiles.com/sign-in/', {
-    //     'auth': {
-    //       'user': 'username',
-    //       'pass': 'password',
-    //       'sendImmediately': false
-    //     }
-    //   });
+fetch('https://thinkmobiles.com/api/auth/sign-in/', {
+        method: 'post',
+        body:    JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' },
+    })
+    .then(res =>console.log(res));
+
+   
 });
 //////
 
@@ -91,3 +77,4 @@ Then(/^User see (.+) error$/, (message) => {
         .toHaveTextContaining(message)
 
 });
+
