@@ -15,19 +15,9 @@ When(/^Try to do my api test$/, async () => {
     request.post({
         url: 'https://thinkmobiles.com/api/auth/sign-in/',
         form: {
-            body: {
-                'email': 'dantes.8ua8@gmail.com',
-                'password': 'lolyP0P11',
-                rememberMe: false
-            },
-            headers: {
-                'Accept': '*/*',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Content-Length': '75',
-                'Connection': 'keep-alive',
-                'Content-Type': 'application/json'
-
-            },
+                email: 'dantes.8ua8@gmail.com',
+                password: 'lolyP0P11',
+                rememberMe: false         
         },
 
     },
@@ -37,15 +27,34 @@ When(/^Try to do my api test$/, async () => {
 
         })
     //////////////################//////////////////////////////////
-    //     const email = 'dantes.8ua8@gmail.com',
-    //     password = 'lolyP0P11',
-    //     url = 'http://' + email + ':' + password + 'thinkmobiles.com/api/auth/sign-in/';
 
-    // request({url}, function (error, response, body) {
-    //    // Do more stuff with 'body' here
-    //    console.log(response);
-    //    console.log(body);
+        // const data = {
+    //     email: 'dantes.8ua8@gmail.com',
+    //     password: 'lolyP0P11',
+    //     rememberMe: false
+    // };
+
+    // const response = await fetch('https://thinkmobiles.com/api/auth/sign-in/',
+    //  {
+    //     method: 'POST',
+    //     mode: 'cors', // no-cors, *cors, same-origin
+    //     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    //     credentials: 'same-origin', // include, *same-origin, omit
+    //     headers: {
+    //         'Accept': '*/*',
+    //         'Accept-Encoding': 'gzip, deflate, br',
+    //         'Content-Length': '75',
+    //         'Connection': 'keep-alive',
+    //         'Content-Type': 'application/json',
+    //         'origin': 'https://thinkmobiles.com',
+    //         'referer': 'https://thinkmobiles.com/sign-in/'
+    //     },
+    //     redirect: 'follow', // manual, *follow, error
+    //     referrerPolicy: 'no-referrer', // no-referrer, *client
+    //     body: JSON.stringify(data)
     // });
+    // console.log(response);
+
     ////////////########################/////////////////
     //     const data = {
     //     email: 'dantes.8ua8@gmail.com',
