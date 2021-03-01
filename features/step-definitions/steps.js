@@ -1,6 +1,7 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { disable } = require('mockery');
 const fetch = require("node-fetch");
+const axios = require('axios').default;
 const request = require('request');
 const LoginPage = require('../pageobjects/login.page');
 // const SecurePage = require('../pageobjects/secure.page');
@@ -11,24 +12,46 @@ Given(/^I am on the login page$/, () => {
 });
 
 
-When(/^Try to do my api test$/, async () => {
-    request.post({
-        url: 'https://thinkmobiles.com/api/auth/sign-in/',
-        form: {
-                email: 'dantes.8ua8@gmail.com',
-                password: 'lolyP0P11',
-                rememberMe: false         
-        },
+When(/^Try to do my api test$/,async() => {
+    axios.post('https://thinkmobiles.com/api/auth/sign-in/', {
+        email: 'dantes.8ua8@gmail.com',
+        password: 'lolyP0P11',
+        rememberMe: false
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
-    },
-        function (err, httpResponse, body) {
-            console.log(httpResponse);
-            console.log(body);
+    // axios({
+    //     method: 'post',
+    //     url: 'https://thinkmobiles.com/api/auth/sign-in/',
+    //     data: {
+    //         email: 'dantes.8ua8@gmail.com',
+    //         password: 'lolyP0P11',
+    //         rememberMe: false
+    //     }
+    //   });
+    /////////////////###################//////////////////////////
+    // request.post({
+    //     url: 'https://thinkmobiles.com/api/auth/sign-in/',
+    //     form: {
+    //             email: 'dantes.8ua8@gmail.com',
+    //             password: 'lolyP0P11',
+    //             rememberMe: false         
+    //     },
 
-        })
+    // },
+    //     function (err, httpResponse, body) {
+    //         console.log(httpResponse);
+    //         console.log(body);
+
+    //     })
     //////////////################//////////////////////////////////
 
-        // const data = {
+    //     const data = {
     //     email: 'dantes.8ua8@gmail.com',
     //     password: 'lolyP0P11',
     //     rememberMe: false
