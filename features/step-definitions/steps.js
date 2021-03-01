@@ -12,19 +12,30 @@ Given(/^I am on the login page$/, () => {
 
 
 When(/^Try to do my api test$/, async () => {
-    // request.post({
-    //     url: 'https://thinkmobiles.com/api/auth/sign-in/',
-    //     form: {
-    //         email: 'dantes.8ua8@gmail.com',
-    //         password : 'lolyP0P11',
-    //         rememberMe: false
-    //     }
-    // },
-    //     function (err, httpResponse, body) {
-    //         console.log(httpResponse);
-    //         console.log(body);
+    request.post({
+        url: 'https://thinkmobiles.com/api/auth/sign-in/',
+        form: {
+            body: {
+                'email': 'dantes.8ua8@gmail.com',
+                'password': 'lolyP0P11',
+                rememberMe: false
+            },
+            headers: {
+                'Accept': '*/*',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Length': '75',
+                'Connection': 'keep-alive',
+                'Content-Type': 'application/json'
 
-    //     })
+            },
+        },
+
+    },
+        function (err, httpResponse, body) {
+            console.log(httpResponse);
+            console.log(body);
+
+        })
     //////////////################//////////////////////////////////
     //     const email = 'dantes.8ua8@gmail.com',
     //     password = 'lolyP0P11',
@@ -36,18 +47,17 @@ When(/^Try to do my api test$/, async () => {
     //    console.log(body);
     // });
     ////////////########################/////////////////
-        const data = {
-        email: 'dantes.8ua8@gmail.com',
-        password: 'lolyP0P11',
-        rememberMe: false
-    };
+    //     const data = {
+    //     email: 'dantes.8ua8@gmail.com',
+    //     password: 'lolyP0P11',
+    //     rememberMe: false
+    // };
 
-    fetch('https://thinkmobiles.com/api/auth/sign-in/', {
-            method: 'post',
-            body:    JSON.stringify(data),
-            headers: { 'Content-Type': 'application/json' },
-        })
-        .then(res =>console.log(res));
+    // fetch('https://thinkmobiles.com/api/auth/sign-in/', {
+    //         method: 'post',
+    //         body:    JSON.stringify(data),
+    //         headers: { 'Content-Type': 'application/json' },
+    //     })
 
 
 });
